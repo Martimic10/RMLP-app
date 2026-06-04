@@ -1,6 +1,5 @@
 import { generateRoast } from "./llm";
 import { scrapeLandingPage } from "./firecrawl";
-import { sendRoastEmail } from "./resend";
 import { getReport, saveReport, updateReport } from "./store";
 
 export async function processRoast(reportId: string): Promise<void> {
@@ -28,7 +27,6 @@ export async function processRoast(reportId: string): Promise<void> {
     };
 
     await saveReport(completed);
-    await sendRoastEmail(completed);
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";
     await updateReport(reportId, {

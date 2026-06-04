@@ -25,7 +25,6 @@ export interface RoastResult {
 export interface RoastReport {
   id: string;
   url: string;
-  email: string;
   status: "pending" | "processing" | "complete" | "failed";
   createdAt: string;
   overallGrade?: LetterGrade;

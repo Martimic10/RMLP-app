@@ -8,19 +8,17 @@ import type { RoastReport } from "@/lib/types";
 
 const bodySchema = z.object({
   url: z.string().url("Enter a valid URL (include https://)"),
-  email: z.string().email("Enter a valid email"),
 });
 
 export async function POST(request: Request) {
   try {
     const json = await request.json();
-    const { url, email } = bodySchema.parse(json);
+    const { url } = bodySchema.parse(json);
 
     const reportId = newReportId();
     const pending: RoastReport = {
       id: reportId,
       url,
-      email,
       status: "pending",
       createdAt: new Date().toISOString(),
     };
@@ -42,7 +40,6 @@ export async function POST(request: Request) {
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
-      customer_email: email,
       line_items: [
         {
           price_data: {
@@ -59,7 +56,6 @@ export async function POST(request: Request) {
       metadata: {
         reportId,
         url,
-        email,
       },
       success_url: `${base}/report/${reportId}?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: base,

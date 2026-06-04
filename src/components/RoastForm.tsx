@@ -5,7 +5,6 @@ import { PRICE_DISPLAY } from "@/lib/constants";
 
 export function RoastForm() {
   const [url, setUrl] = useState("");
-  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -18,7 +17,7 @@ export function RoastForm() {
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url, email }),
+        body: JSON.stringify({ url }),
       });
       const data = (await res.json()) as { url?: string; error?: string };
 
@@ -53,22 +52,6 @@ export function RoastForm() {
           className="w-full min-h-[3rem] rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5 text-base text-white placeholder:text-white/35 outline-none transition focus:border-flame/50 focus:ring-2 focus:ring-flame/30 sm:px-5 sm:py-4 sm:text-lg"
         />
       </div>
-      <div className="space-y-2">
-        <label htmlFor="email" className="sr-only">
-          Email
-        </label>
-        <input
-          id="email"
-          type="email"
-          required
-          inputMode="email"
-          autoComplete="email"
-          placeholder="you@startup.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full min-h-[3rem] rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5 text-base text-white placeholder:text-white/35 outline-none transition focus:border-flame/50 focus:ring-2 focus:ring-flame/30 sm:px-5 sm:py-4 sm:text-lg"
-        />
-      </div>
 
       {error && (
         <p className="break-anywhere text-sm text-red-400" role="alert">
@@ -88,7 +71,7 @@ export function RoastForm() {
       </button>
 
       <p className="px-1 text-center text-xs leading-relaxed text-white/40 sm:text-sm">
-        One-time payment · Full report in ~60s · Delivered to your inbox
+        One-time payment · Full report in ~60s · Shareable link
       </p>
     </form>
   );

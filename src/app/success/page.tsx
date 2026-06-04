@@ -100,8 +100,8 @@ function SuccessContent() {
 
         {report?.status === "complete" && (
           <>
-            <p className="mb-6 break-anywhere text-sm text-emerald-400/90 sm:mb-8">
-              ✓ Report saved — also sent to {report.email}
+            <p className="mb-6 text-sm text-emerald-400/90 sm:mb-8">
+              ✓ Report saved — share your link below
             </p>
             <ReportView report={report} />
             <p className="mt-8 text-center text-sm text-white/40 sm:mt-10">

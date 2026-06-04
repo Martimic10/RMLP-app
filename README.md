@@ -4,7 +4,7 @@ Repository: [github.com/Martimic10/RMLP-app](https://github.com/Martimic10/RMLP-
 
 Brutally honest, AI-powered landing page feedback for indie hackers and startup founders.
 
-Paste your URL and email, pay **$4** once via Stripe, and get a full critique in ~60 seconds — on-screen and in your inbox. Every roast is shareable.
+Paste your URL, pay **$4** once via Stripe, and get a full critique in ~60 seconds on a shareable report page.
 
 ## Stack
 
@@ -12,7 +12,6 @@ Paste your URL and email, pay **$4** once via Stripe, and get a full critique in
 - **Stripe** — one-time checkout
 - **Firecrawl** — live page scraping
 - **OpenRouter** (Claude via API) — structured 6-section roast with grades + rewrites
-- **Resend** — email delivery
 - **Upstash Redis** — report persistence (file fallback for local dev)
 
 ## Rubric (6 sections)
@@ -79,7 +78,7 @@ In another terminal, run the app and complete a test checkout with card `4242 42
 4. Copy the **Signing secret** (`whsec_...`) into Vercel env as `STRIPE_WEBHOOK_SECRET`
 5. Redeploy
 
-Also set in Vercel: `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_APP_URL=https://YOUR-DOMAIN.com`, plus OpenRouter, Firecrawl, Resend, and Upstash Redis.
+Also set in Vercel: `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_APP_URL=https://YOUR-DOMAIN.com`, plus OpenRouter, Firecrawl, and Upstash Redis.
 
 ### Upstash Redis (report storage)
 
@@ -119,7 +118,7 @@ Without Redis, dev falls back to `.data/reports/` on disk (does not work on Verc
 |------|------|
 | Sale | $4.00 |
 | Stripe (~2.9% + $0.30) | ~$0.42 |
-| Firecrawl + Claude + Resend | ~$0.04 |
+| Firecrawl + OpenRouter | ~$0.04 |
 | **Margin** | **~$3.54** |
 
 ## Scripts
