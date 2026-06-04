@@ -23,8 +23,12 @@ export const metadata: Metadata = {
   title: `${APP_NAME} — Brutally honest landing page feedback`,
   description: APP_TAGLINE,
   icons: {
-    icon: [{ url: "/rmlp-logo.png", type: "image/png" }],
-    apple: [{ url: "/rmlp-logo.png", type: "image/png" }],
+    icon: [
+      { url: "/icon.png", type: "image/png", sizes: "96x96" },
+      { url: "/rmlp-logo.png", type: "image/png", sizes: "1254x1254" },
+    ],
+    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
+    shortcut: "/icon.png",
   },
   openGraph: {
     title: APP_NAME,
